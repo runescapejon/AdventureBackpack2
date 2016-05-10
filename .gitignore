@@ -1,0 +1,8 @@
+.gradle/
+eclipse/
+libs/
+out/
+AdventureBackpack.iml
+AdventureBackpack.ipr
+AdventureBackpack.iws
+*.bat
