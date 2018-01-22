@@ -17,7 +17,7 @@ public class GeneralReference
 
     public static void init()
     {
-        liquidFuels.put("biofuel", ConfigHandler.fuelRateBioFuel); // ?
+        liquidFuels.put("biodiesel", ConfigHandler.fuelRateBioDiesel); // GT Bio Diesel
         liquidFuels.put("bioethanol", ConfigHandler.fuelRateBioEthanol); // ic2 ethanol
         liquidFuels.put("creosote", ConfigHandler.fuelRateCreosote);
         liquidFuels.put("fuel", ConfigHandler.fuelRateFuel);

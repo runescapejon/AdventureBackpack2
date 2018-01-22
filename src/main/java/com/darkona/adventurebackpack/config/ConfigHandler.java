@@ -61,7 +61,7 @@ public class ConfigHandler
     public static String[] nameUnlocalized;
     public static String[] nameDefault = {};
 
-    public static float fuelRateBioFuel = 1.0f;
+    public static float fuelRateBioDiesel = 1.0f;
     public static float fuelRateBioEthanol = 1.5f;
     public static float fuelRateCreosote = 7.0f;
     public static float fuelRateFuel = 0.8f;
@@ -155,7 +155,7 @@ public class ConfigHandler
         nameUnlocalized = config.getStringList("By Internal Name", "items.disallowed", nameDefault, "Disallow items by internal (unlocalized) name. Not case sensitive. Example: tile.dirt");
 
         // Items.Fuel
-        fuelRateBioFuel = config.getFloat("BioFuel", "items.fuel", 1.0f, 0.05f, 20.0f, "BioFuel consumption rate");
+        fuelRateBioDiesel = config.getFloat("BioDiesel", "items.fuel", 1.0f, 0.05f, 20.0f, "BioDiesel consumption rate");
         fuelRateBioEthanol = config.getFloat("BioEthanol", "items.fuel", 1.5f, 0.05f, 20.0f, "BioEthanol consumption rate");
         fuelRateCreosote = config.getFloat("Creosote", "items.fuel", 7.0f, 0.05f, 20.0f, "Creosote consumption rate");
         fuelRateFuel = config.getFloat("Fuel", "items.fuel", 0.8f, 0.05f, 20.0f, "Fuel / rocket fuel consumption rate");
