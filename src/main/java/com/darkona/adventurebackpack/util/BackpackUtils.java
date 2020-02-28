@@ -1,8 +1,9 @@
 package com.darkona.adventurebackpack.util;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
+import com.darkona.adventurebackpack.events.WearableEvent;
+import com.darkona.adventurebackpack.init.ModItems;
+import com.darkona.adventurebackpack.playerProperties.BackpackProperty;
+import com.darkona.adventurebackpack.reference.BackpackTypes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,14 +12,10 @@ import net.minecraft.util.ChatComponentTranslation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 
-import com.darkona.adventurebackpack.events.WearableEvent;
-import com.darkona.adventurebackpack.init.ModItems;
-import com.darkona.adventurebackpack.playerProperties.BackpackProperty;
-import com.darkona.adventurebackpack.reference.BackpackTypes;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import static com.darkona.adventurebackpack.common.Constants.TAG_INVENTORY;
-import static com.darkona.adventurebackpack.common.Constants.TAG_TYPE;
-import static com.darkona.adventurebackpack.common.Constants.TAG_WEARABLE_COMPOUND;
+import static com.darkona.adventurebackpack.common.Constants.*;
 
 /**
  * Created on 08/01/2015
@@ -96,6 +93,14 @@ public class BackpackUtils
 
     public static NBTTagCompound getWearableCompound(ItemStack stack)
     {
+        // For concurrency reasons, at the time of death with OpenBlocks mod, the copter may already be in the grave, and com/darkona/adventurebackpack/util/Wearing.java:133 will return null. Just fast fix.
+        if (stack == null)
+        {
+            NBTTagCompound dummyCompound = new NBTTagCompound();
+            dummyCompound.setTag(TAG_WEARABLE_COMPOUND, new NBTTagCompound());
+            return dummyCompound;
+        }
+
         // it also creates wearable compound if stack has no own, so maybe worth to rename the method
         if (!stack.hasTagCompound() || !stack.stackTagCompound.hasKey(TAG_WEARABLE_COMPOUND))
             createWearableCompound(stack);
